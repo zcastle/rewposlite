@@ -2,6 +2,7 @@ package com.ob.controller;
 
 import com.ob.model.Categoria;
 import com.ob.model.Usuario;
+import com.ob.util.Util;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,19 +32,11 @@ public class UsuarioController extends Controller {
         return usuarios;
     }
 
-    /*public void setUsuarios(ArrayList<Usuario> usuarios) {
-        this.usuarios = usuarios;
+    public boolean isLogin(Usuario usuario, String clave) throws SQLException {
+        PreparedStatement pstm = this.conn.prepareStatement("SELECT * FROM usuario WHERE id = ? AND clave = ?");
+        pstm.setInt(1, usuario.getId());
+        pstm.setString(2, Util.getMD5(clave));
+        return pstm.executeQuery().next();
     }
-
-    public Usuario getUsuarioById(int id) {
-        Usuario u = null;
-        for (Usuario obj : getUsuarios()) {
-            if (obj.getId() == id) {
-                u = obj;
-                break;
-            }
-        }
-        return u;
-    }*/
 
 }

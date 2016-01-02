@@ -24,7 +24,7 @@ public class Main {
             }
         }
         
-        Connection conn = Conn.getConnection();
+        final Connection conn = Conn.getConnection();
         if(conn==null){
             Util.showMessageAndExit(App.MESSAGE_ERROR_DB);
         }else{
@@ -32,7 +32,7 @@ public class Main {
                 @Override
                 public void run() {
                     try {
-                        Cia cia = new CiaController(Conn.getConnection()).getCia();
+                        Cia cia = new CiaController(conn).getCia();
                         App.IGV = cia.getCentroCosto().getCaja().getIgv();
                         App.SERVICIO = cia.getCentroCosto().getServicio();
                         App.CIA = cia;

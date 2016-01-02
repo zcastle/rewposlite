@@ -1,5 +1,13 @@
 package com.ob.view.panel;
 
+import com.ob.controller.UsuarioController;
+import com.ob.util.App;
+import com.ob.util.Conn;
+import com.ob.util.Util;
+import com.ob.view.FrmContainer;
+import com.ob.view.comp.LblCajero;
+import java.sql.SQLException;
+
 public class PnlLogin extends javax.swing.JPanel {
 
     public PnlLogin() {
@@ -16,27 +24,28 @@ public class PnlLogin extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        lblCajero1 = new com.ob.view.comp.LblCajero();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        pnlTecladoNumerico1 = new com.ob.view.comp.PnlTecladoNumerico();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        lblCajeroFoto = new com.ob.view.comp.LblCajero();
+        txtClave = new javax.swing.JPasswordField();
+        pnlTecladoNumerico1 = new com.ob.view.comp.PnlTecladoNumerico(txtClave);
+        btnIngresar = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new java.awt.GridBagLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        add(lblCajero1, gridBagConstraints);
+        add(lblCajeroFoto, gridBagConstraints);
+
+        txtClave.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        add(jPasswordField1, gridBagConstraints);
+        add(txtClave, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -45,24 +54,35 @@ public class PnlLogin extends javax.swing.JPanel {
         gridBagConstraints.weightx = 1.0;
         add(pnlTecladoNumerico1, gridBagConstraints);
 
-        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
-        jButton1.setText("Aceptar");
+        btnIngresar.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        btnIngresar.setText("Aceptar");
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weighty = 1.0;
-        add(jButton1, gridBagConstraints);
+        add(btnIngresar, gridBagConstraints);
 
-        jButton2.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
-        jButton2.setText("Regresar");
+        btnRegresar.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weighty = 1.0;
-        add(jButton2, gridBagConstraints);
+        add(btnRegresar, gridBagConstraints);
 
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jLabel1.setText("Clave:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -72,13 +92,43 @@ public class PnlLogin extends javax.swing.JPanel {
         add(jLabel1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
+    public static LblCajero getLblCajeroFoto() {
+        return lblCajeroFoto;
+    }
+    
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        App.CAJERO = null;
+        txtClave.setText("");
+        Util.changeCard("Acceso");
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        //
+        String clave = new String(txtClave.getPassword());
+        if(clave.isEmpty()){
+            Util.msg("Ingrese su clave");
+            return;
+        }
+        try {
+            boolean isLogin = new UsuarioController(Conn.getConnection()).isLogin(App.CAJERO, clave);
+            if(isLogin){
+                FrmContainer.getLblCajero().setText(App.CAJERO.getNombre());
+                Util.changeCard("Pedido");
+            }else{
+                Util.msg("Clave incorrecta");
+            }
+        } catch(SQLException e){
+            Util.e(e.getMessage());
+        }
+    }//GEN-LAST:event_btnIngresarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnIngresar;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private com.ob.view.comp.LblCajero lblCajero1;
+    private static com.ob.view.comp.LblCajero lblCajeroFoto;
     private com.ob.view.comp.PnlTecladoNumerico pnlTecladoNumerico1;
+    private javax.swing.JPasswordField txtClave;
     // End of variables declaration//GEN-END:variables
 }

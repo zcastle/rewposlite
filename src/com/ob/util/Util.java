@@ -1,5 +1,7 @@
 package com.ob.util;
 
+import com.ob.view.FrmContainer;
+import java.awt.CardLayout;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -20,8 +22,12 @@ public class Util {
     }
     
     public static final void e(String message) {
+        e(message, "ERROR");
+    }
+    
+    public static final void e(String message, String titulo) {
         if(App.DEBUG){
-            JOptionPane.showMessageDialog(null, message, "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, message, titulo, JOptionPane.ERROR_MESSAGE);
         }else{
             System.out.println(message);
         }
@@ -29,6 +35,14 @@ public class Util {
 
     public static final void i(String message) {
         System.out.println(message);
+    }
+    
+    public static final void msg(String message) {
+        msg(message, App.MESSAGE_DIALOG_TITLE);
+    }
+    
+    public static final void msg(String message, String titulo) {
+        JOptionPane.showMessageDialog(null, message, titulo, JOptionPane.INFORMATION_MESSAGE);
     }
 
     public static final boolean isNumeric(String num) {
@@ -93,5 +107,9 @@ public class Util {
         } catch (java.security.NoSuchAlgorithmException e) {
         }
         return null;
+    }
+    
+    public static void changeCard(String card){
+        ((CardLayout)FrmContainer.getContainer().getLayout()).show(FrmContainer.getContainer(), card);
     }
 }

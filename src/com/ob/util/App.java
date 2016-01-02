@@ -4,8 +4,14 @@ import com.ob.controller.PedidoController;
 import com.ob.controller.ProductoController;
 import com.ob.model.Cia;
 import com.ob.model.Usuario;
+import com.ob.view.panel.PnlAcceso;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.swing.JPanel;
 
 public final class App {
 
@@ -16,6 +22,8 @@ public final class App {
     public static Double SERVICIO = 0.0;
     public static Cia CIA = null;
     public static Usuario CAJERO = null;
+    
+    //public static CardLayout CARDLAYOUT = new java.awt.CardLayout();
     
     // CONSTANTES FINALES
     /*private static final int HOLO_BLUE_LIGHT = 0xff33b5e5;
@@ -57,7 +65,7 @@ public final class App {
     public static final String MESSAGE_CERRAR_SISTEMA = "Se cerrar el sistema, ¿Continuar?";
     public static final String MESSAGE_SALIENDO_SISTEMA = "Saliendo del sistema";
 
-    public static final String TITULO_MESSAGE_DIALOG = "Mensaje de Sistema";
+    public static final String MESSAGE_DIALOG_TITLE = "Mensaje de Sistema";
     // FIN
 
     // CONSTANTES LOG

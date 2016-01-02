@@ -29,6 +29,7 @@ public class PnlTecladoNumerico extends javax.swing.JPanel implements MouseListe
     
     private void init(boolean moneda) {
         jLabel1.addMouseListener(this);
+        jLabel1.setSize(new Dimension(200, 200));
         jLabel2.addMouseListener(this);
         jLabel3.addMouseListener(this);
         jLabel4.addMouseListener(this);
@@ -51,7 +52,6 @@ public class PnlTecladoNumerico extends javax.swing.JPanel implements MouseListe
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -68,17 +68,17 @@ public class PnlTecladoNumerico extends javax.swing.JPanel implements MouseListe
 
         setLayout(new java.awt.GridLayout(4, 3));
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("1");
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.setName(""); // NOI18N
         jLabel1.setOpaque(true);
+        jLabel1.setPreferredSize(new java.awt.Dimension(85, 85));
         add(jLabel1);
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -88,7 +88,6 @@ public class PnlTecladoNumerico extends javax.swing.JPanel implements MouseListe
         jLabel2.setOpaque(true);
         add(jLabel2);
 
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -98,7 +97,6 @@ public class PnlTecladoNumerico extends javax.swing.JPanel implements MouseListe
         jLabel3.setOpaque(true);
         add(jLabel3);
 
-        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -108,7 +106,6 @@ public class PnlTecladoNumerico extends javax.swing.JPanel implements MouseListe
         jLabel4.setOpaque(true);
         add(jLabel4);
 
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -118,7 +115,6 @@ public class PnlTecladoNumerico extends javax.swing.JPanel implements MouseListe
         jLabel5.setOpaque(true);
         add(jLabel5);
 
-        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -128,7 +124,6 @@ public class PnlTecladoNumerico extends javax.swing.JPanel implements MouseListe
         jLabel6.setOpaque(true);
         add(jLabel6);
 
-        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -138,7 +133,6 @@ public class PnlTecladoNumerico extends javax.swing.JPanel implements MouseListe
         jLabel7.setOpaque(true);
         add(jLabel7);
 
-        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -148,7 +142,6 @@ public class PnlTecladoNumerico extends javax.swing.JPanel implements MouseListe
         jLabel8.setOpaque(true);
         add(jLabel8);
 
-        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -158,7 +151,6 @@ public class PnlTecladoNumerico extends javax.swing.JPanel implements MouseListe
         jLabel9.setOpaque(true);
         add(jLabel9);
 
-        jLabel0.setBackground(new java.awt.Color(255, 255, 255));
         jLabel0.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jLabel0.setForeground(new java.awt.Color(0, 0, 0));
         jLabel0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -168,7 +160,6 @@ public class PnlTecladoNumerico extends javax.swing.JPanel implements MouseListe
         jLabel0.setOpaque(true);
         add(jLabel0);
 
-        lblPunto.setBackground(new java.awt.Color(255, 255, 255));
         lblPunto.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         lblPunto.setForeground(new java.awt.Color(0, 0, 0));
         lblPunto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -178,7 +169,6 @@ public class PnlTecladoNumerico extends javax.swing.JPanel implements MouseListe
         lblPunto.setOpaque(true);
         add(lblPunto);
 
-        lblLimpiar.setBackground(new java.awt.Color(255, 255, 255));
         lblLimpiar.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         lblLimpiar.setForeground(new java.awt.Color(0, 0, 0));
         lblLimpiar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -210,7 +200,8 @@ public class PnlTecladoNumerico extends javax.swing.JPanel implements MouseListe
     public void mouseClicked(MouseEvent e) {
         // TODO Implement this method
         JLabel label = (JLabel) e.getSource();
-        if(label.getToolTipText().equals("Limpiar")) {
+        String tip = label.getToolTipText()+"";
+        if(tip.equals("Limpiar")) {
             this.txtCampo.setText("");
         } else {
             if(!this.txtCampo.getText().contains(".")){

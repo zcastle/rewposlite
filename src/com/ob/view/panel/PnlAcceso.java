@@ -1,10 +1,13 @@
 package com.ob.view.panel;
 
-import com.ob.view.comp.LblCajero;
 import com.ob.controller.UsuarioController;
 import com.ob.model.Usuario;
+import com.ob.util.App;
 import com.ob.util.Conn;
 import com.ob.util.Util;
+import com.ob.view.comp.LblCajero;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -18,6 +21,29 @@ public class PnlAcceso extends javax.swing.JPanel {
             LblCajero lblCajero;
             for (Usuario cajero : cajeros) {
                 lblCajero = new LblCajero(cajero);
+                lblCajero.addMouseListener(new MouseListener() {
+
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        LblCajero label = (LblCajero) e.getSource();
+                        Usuario usuario = label.getUsuario();
+                        App.CAJERO = usuario;
+                        PnlLogin.getLblCajeroFoto().setText(App.CAJERO.getNombre());
+                        Util.changeCard("Login");
+                    }
+
+                    @Override
+                    public void mousePressed(MouseEvent e) {}
+
+                    @Override
+                    public void mouseReleased(MouseEvent e) {}
+
+                    @Override
+                    public void mouseEntered(MouseEvent e) {}
+
+                    @Override
+                    public void mouseExited(MouseEvent e) {}
+                });
                 add(lblCajero);
             }
         } catch (SQLException ex) {

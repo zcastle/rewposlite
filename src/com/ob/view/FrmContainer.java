@@ -2,26 +2,51 @@ package com.ob.view;
 
 import com.ob.model.Cia;
 import com.ob.view.panel.PnlAcceso;
-import com.ob.view.panel.PnlLogin;
+import com.ob.view.panel.PnlLoginContainer;
 import com.ob.view.panel.PnlPedido;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
  * @author jc
  */
-public class FrmContainer extends FrmBase {
+public final class FrmContainer extends FrmBase {
+
+    private final Map<String, JPanel> cards = new HashMap<>();
 
     public FrmContainer(Cia cia) {
         super();
         initComponents();
+        //setCards();
+        //for (String key : cards.keySet()) {
+            //System.out.println("Clave: " + key + " -> Valor: " + cards.get(key));
+            //pnlContenedor.add(key, cards.get(key));
+        //}
         pnlContenedor.add("Acceso", new PnlAcceso());
-        pnlContenedor.add("Login", new PnlLogin());
+        pnlContenedor.add("Login", new PnlLoginContainer());
         pnlContenedor.add("Pedido", new PnlPedido());
-        //Util.e(cia.getRazonSocial());
+        
         lblEmpresa.setText(cia.getRazonSocial());
-        lblUsuario.setText("");
+        lblCajero.setText("");
     }
 
+    /*public void setCards() {
+        cards.put("Acceso", new PnlAcceso());
+        cards.put("Login", new PnlLoginContainer());
+        cards.put("Pedido", new PnlPedido());
+    }*/
+
+    public static JPanel getContainer() {
+        return pnlContenedor;
+    }
+
+    public static JLabel getLblCajero() {
+        return lblCajero;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,7 +60,7 @@ public class FrmContainer extends FrmBase {
         pnlCabecera = new javax.swing.JPanel();
         lblOB = new javax.swing.JLabel();
         lblEmpresa = new javax.swing.JLabel();
-        lblUsuario = new javax.swing.JLabel();
+        lblCajero = new javax.swing.JLabel();
         pnlContenedor = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -68,17 +93,17 @@ public class FrmContainer extends FrmBase {
         gridBagConstraints.insets = new java.awt.Insets(15, 0, 15, 0);
         pnlCabecera.add(lblEmpresa, gridBagConstraints);
 
-        lblUsuario.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
-        lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        lblUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblUsuario.setText("USUARIO");
-        lblUsuario.setMinimumSize(new java.awt.Dimension(200, 15));
-        lblUsuario.setPreferredSize(new java.awt.Dimension(200, 15));
+        lblCajero.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        lblCajero.setForeground(new java.awt.Color(255, 255, 255));
+        lblCajero.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCajero.setText("CAJERO");
+        lblCajero.setMinimumSize(new java.awt.Dimension(200, 15));
+        lblCajero.setPreferredSize(new java.awt.Dimension(200, 15));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-        pnlCabecera.add(lblUsuario, gridBagConstraints);
+        pnlCabecera.add(lblCajero, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
@@ -98,10 +123,10 @@ public class FrmContainer extends FrmBase {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private static javax.swing.JLabel lblCajero;
     private javax.swing.JLabel lblEmpresa;
     private javax.swing.JLabel lblOB;
-    private javax.swing.JLabel lblUsuario;
     private javax.swing.JPanel pnlCabecera;
-    private javax.swing.JPanel pnlContenedor;
+    private static javax.swing.JPanel pnlContenedor;
     // End of variables declaration//GEN-END:variables
 }
