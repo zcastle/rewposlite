@@ -5,21 +5,14 @@ package com.ob.model;
  * @author jc
  */
 public class Producto {
-
-    public static final int UNIDAD_MAYOR = 0;
-    public static final int UNIDAD_MENOR = 1;
     
     private int id;
-    private int ln;
-    private String codigo = "";
+    //private int ln;
+    //private int atencionId; //no necesario?
+    //private String codigo = ""; //no necesario?
     private String nombre;
     private Double precio = 0.0;
-    private String categoria = "";
-    private int unidadId;
-    private String unidad;
     private Double cantidad = 1.0;
-    private int unidaType = UNIDAD_MAYOR;
-    private Double Stock;
 
     public Producto() {
     }
@@ -27,6 +20,12 @@ public class Producto {
     public Producto(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;
+    }
+    
+    public Producto(int id, String nombre, Double precio) {
+        this.id = id;
+        this.nombre = nombre;
+        this.precio = precio;
     }
 
     public int getId() {
@@ -37,21 +36,21 @@ public class Producto {
         this.id = id;
     }
 
-    public int getLn() {
+    /*public int getLn() {
         return ln;
     }
 
     public void setLn(int ln) {
         this.ln = ln;
-    }
+    }*/
     
-    public String getCodigo() {
+    /*public String getCodigo() {
         return codigo;
     }
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
-    }
+    }*/
 
     public String getNombre() {
         return nombre;
@@ -69,30 +68,6 @@ public class Producto {
         this.precio = precio;
     }
 
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-
-    public int getUnidadId() {
-        return unidadId;
-    }
-
-    public void setUnidadId(int unidadId) {
-        this.unidadId = unidadId;
-    }
-    
-    public String getUnidad() {
-        return unidad;
-    }
-
-    public void setUnidad(String unidad) {
-        this.unidad = unidad;
-    }
-
     public Double getCantidad() {
         return cantidad;
     }
@@ -101,20 +76,7 @@ public class Producto {
         this.cantidad = cantidad;
     }
 
-    public int getUnidaType() {
-        return unidaType;
+    public Object getTotal() {
+        return this.cantidad*this.precio;
     }
-
-    public void setUnidaType(int unidaType) {
-        this.unidaType = unidaType;
-    }
-
-    public Double getStock() {
-        return Stock;
-    }
-
-    public void setStock(Double Stock) {
-        this.Stock = Stock;
-    }
-    
 }

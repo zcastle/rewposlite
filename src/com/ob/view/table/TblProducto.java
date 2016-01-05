@@ -1,10 +1,17 @@
 package com.ob.view.table;
 
+import com.ob.model.Producto;
+import com.ob.util.Util;
+import java.util.ArrayList;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
 public class TblProducto extends TblBase {
-    
+
+    private ArrayList<Producto> productos;
+
     public TblProducto() {
+        productos = new ArrayList<>();
         dtm = new DefaultTableModel(
                 new Object[][]{},
                 new String[]{
@@ -29,8 +36,35 @@ public class TblProducto extends TblBase {
             }
         };
         this.setModel(dtm);
+        DecimalFormatRenderer rightRenderer = new DecimalFormatRenderer();
+        rightRenderer.setHorizontalAlignment(SwingConstants.RIGHT);
+        this.getColumnModel().getColumn(2).setCellRenderer(rightRenderer);
         this.setWidthColumn(this, 0, 0); //Id
         this.setWidthColumn(this, 2, 60); //Precio
     }
-    
+
+    public void removeProductos() {
+        productos = new ArrayList<>();
+        dtm.setRowCount(0);
+    }
+
+    public void addProducto(Producto p) {
+        Object[] row = new Object[3];
+        row[0] = p.getId();
+        row[1] = p.getNombre();
+        row[2] = p.getPrecio();
+        dtm.addRow(row);
+        this.productos.add(p);
+    }
+
+    public Producto getProducto() {
+        int row = getSelectedRow();
+        int id = (int) dtm.getValueAt(row, 0);
+        for (Producto p : productos) {
+            if (p.getId() == id) {
+                return p;
+            }
+        }
+        return null;
+    }
 }

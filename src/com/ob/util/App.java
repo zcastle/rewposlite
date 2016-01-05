@@ -4,14 +4,8 @@ import com.ob.controller.PedidoController;
 import com.ob.controller.ProductoController;
 import com.ob.model.Cia;
 import com.ob.model.Usuario;
-import com.ob.view.panel.PnlAcceso;
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import javax.swing.JPanel;
 
 public final class App {
 
@@ -22,6 +16,10 @@ public final class App {
     public static Double SERVICIO = 0.0;
     public static Cia CIA = null;
     public static Usuario CAJERO = null;
+    
+    public static int DEFAULT_LIMIT = 20;
+    public static int DEFAULT_ATENCION = 1;
+    public static int CURRENT_ATENCION = 1;
     
     //public static CardLayout CARDLAYOUT = new java.awt.CardLayout();
     

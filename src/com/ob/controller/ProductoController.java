@@ -1,8 +1,12 @@
 package com.ob.controller;
 
 import com.ob.model.Producto;
-import java.io.IOException;
+import com.ob.util.App;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,43 +16,38 @@ public class ProductoController extends Controller {
     
     public ProductoController(Connection conn) {
         super(conn);
-        //productos = data.getProductos();
     }
 
-    /*public List<Producto> getProductos() throws IOException {
-        return data.getProductos();
+    public List<Producto> getProductos() throws SQLException {
+        return ProductoController.this.getProductos(App.DEFAULT_LIMIT);
     }
 
-    public List<Producto> getProductos(int lenght) throws IOException {
-        List<Producto> productos = data.getProductos();
+    public List<Producto> getProductos(int limit) throws SQLException {
         List<Producto> p = new ArrayList<>();
-        for (int i = 0; i < lenght; i++) {
-            p.add(productos.get(i));
+        Statement stm = this.conn.createStatement();
+        ResultSet rs = stm.executeQuery("SELECT id, nombre, precio FROM producto ORDER BY orden, nombre, precio LIMIT "+limit);
+        while (rs.next()) {
+            p.add(new Producto(rs.getInt("id"), rs.getString("nombre"), rs.getDouble("precio")));
         }
         return p;
     }
 
-    public List<Producto> getProductoContainName(String nombre) throws IOException {
-        return data.getProductos(nombre);
+    public List<Producto> getProductos(String nombre) throws SQLException {
+        return getProductos(nombre, App.DEFAULT_LIMIT);
     }
 
-    public List<Producto> getProductoContainName(String nombre, int limit) throws IOException {
-        List<Producto> productos = data.getProductos();
-        ArrayList<Producto> p = new ArrayList<>();
-        int ini = 0;
-        for (Producto obj : productos) {
-            if (obj.getNombre().toLowerCase().contains(nombre.toLowerCase())) {
-                ini += 1;
-                p.add(obj);
-                if (ini == limit) {
-                    break;
-                }
-            }
+    public List<Producto> getProductos(String nombre, int limit) throws SQLException {
+        List<Producto> p = new ArrayList<>();
+        PreparedStatement pstm = this.conn.prepareStatement("SELECT id, nombre, precio FROM producto WHERE nombre LIKE ? ORDER BY orden, nombre, precio LIMIT "+limit);
+        pstm.setString(1, "%".concat(nombre).concat("%"));
+        ResultSet rs = pstm.executeQuery();
+        while (rs.next()) {
+            p.add(new Producto(rs.getInt("id"), rs.getString("nombre"), rs.getDouble("precio")));
         }
         return p;
     }
 
-    public Producto getProductoById(int id) throws IOException {
+    /*public Producto getProductoById(int id) throws IOException {
         Producto producto = data.getProducto(id);
         return producto;
     }*/

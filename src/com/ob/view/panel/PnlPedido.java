@@ -1,31 +1,39 @@
 package com.ob.view.panel;
 
+import com.ob.controller.AtencionController;
+import com.ob.model.Atencion;
 import com.ob.util.App;
-import javax.swing.table.DefaultTableModel;
+import com.ob.util.Conn;
+import com.ob.view.table.TblPedido;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author jc
  */
 public class PnlPedido extends javax.swing.JPanel {
-    
-    DefaultTableModel dtmPedido;
             
     public PnlPedido() {
         initComponents();
         pnlBuscar.add("PnlProducto", new PnlProducto());
-        
-        dtmPedido = tblPedido.getDtm();
-        Object[] rowPedido = new Object[5];
-        rowPedido[0] = 0;
-        rowPedido[1] = "Producto 01";
-        rowPedido[2] = 5;
-        rowPedido[3] = 10.00;
-        rowPedido[4] = 50.00;
-        dtmPedido.addRow(rowPedido);
-        dtmPedido.addRow(rowPedido);
     }
-
+    
+    public static void setAtencion(int numero){
+        try {
+            List<Atencion> atencion = new AtencionController(Conn.getConnection()).getAtencion(numero);
+            tblPedido.setAtencion(atencion);
+            App.CURRENT_ATENCION = numero;
+        } catch (SQLException ex) {
+            Logger.getLogger(PnlPedido.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static TblPedido getTable(){
+        return tblPedido;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -170,6 +178,6 @@ public class PnlPedido extends javax.swing.JPanel {
     private javax.swing.JPanel pnlBuscar;
     private javax.swing.JPanel pnlLeft;
     private javax.swing.JPanel pnlRight;
-    private com.ob.view.table.TblPedido tblPedido;
+    private static com.ob.view.table.TblPedido tblPedido;
     // End of variables declaration//GEN-END:variables
 }

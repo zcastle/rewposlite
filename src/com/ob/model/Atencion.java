@@ -2,16 +2,12 @@ package com.ob.model;
 
 public class Atencion {
 
-    private int id;
+    private int id = 0;
     private int cajaId;
-    private String fechaHora;
     private int nroAtencion;
-    private int cajeroId;
-    private int productoId;
-    private String productoName;
-    private Double cantidad;
-    private Double precio;
-    private int clienteId;
+    private Usuario cajero;
+    private Cliente cliente;
+    private Producto producto;
 
     public Atencion() {
     }
@@ -32,14 +28,6 @@ public class Atencion {
         this.cajaId = cajaId;
     }
 
-    public String getFechaHora() {
-        return fechaHora;
-    }
-
-    public void setFechaHora(String fechaHora) {
-        this.fechaHora = fechaHora;
-    }
-
     public int getNroAtencion() {
         return nroAtencion;
     }
@@ -48,52 +36,28 @@ public class Atencion {
         this.nroAtencion = nroAtencion;
     }
 
-    public int getCajeroId() {
-        return cajeroId;
+    public Usuario getCajero() {
+        return cajero;
     }
 
-    public void setCajeroId(int cajeroId) {
-        this.cajeroId = cajeroId;
+    public void setCajero(Usuario cajero) {
+        this.cajero = cajero;
     }
 
-    public int getProductoId() {
-        return productoId;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setProductoId(int productoId) {
-        this.productoId = productoId;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public String getProductoName() {
-        return productoName;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public void setProductoName(String productoName) {
-        this.productoName = productoName;
-    }
-
-    public Double getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(Double cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public Double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(Double precio) {
-        this.precio = precio;
-    }
-
-    public int getClienteId() {
-        return clienteId;
-    }
-
-    public void setClienteId(int clienteId) {
-        this.clienteId = clienteId;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
     
 }

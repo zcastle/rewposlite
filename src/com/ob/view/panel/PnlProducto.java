@@ -1,5 +1,16 @@
 package com.ob.view.panel;
 
+import com.ob.controller.ProductoController;
+import com.ob.model.Atencion;
+import com.ob.model.Cliente;
+import com.ob.model.Producto;
+import com.ob.util.App;
+import com.ob.util.Conn;
+import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -9,39 +20,33 @@ import javax.swing.table.DefaultTableModel;
 public class PnlProducto extends javax.swing.JPanel {
 
     private DefaultTableModel dtmP;
-    private Object[] rowProducto = rowProducto = new Object[5];
 
     public PnlProducto() {
         initComponents();
-        //
-        dtmInit();
-        //
         dtmP = tblProductos.getDtm();
-        /*try {
-            for (Producto p : App.PRODUCTOS.getProductos()) {
-                rowProducto[0] = p.getId();
-                rowProducto[1] = p.getNombre();
-                rowProducto[2] = p.getPrecio();
-                rowProducto[3] = p.getStock();
-                rowProducto[4] = p.getUnidad();
-                dtmP.addRow(rowProducto);
+        primeraProductos();
+    }
+
+    private void primeraProductos() {
+        try {
+            List<Producto> productos = new ProductoController(Conn.getConnection()).getProductos();
+            for (Producto p : productos) {
+                tblProductos.addProducto(p);
             }
-        } catch (IOException ex) {
-            Logger.getLogger(PnlProducto.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        } catch (SQLException ex) {
+            Logger.getLogger(PnlPedido.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    private void dtmInit() {
-        //DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
-        //rightRenderer.setHorizontalAlignment(JLabel.CENTER);
-    }
-
-    private void addProducto(int id) {
-        /*try {
-            System.out.println(App.PRODUCTOS.getProductoById(id).getNombre());
-        } catch (IOException ex) {
-            Logger.getLogger(PnlProducto.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+    private void addProducto2Pedido() {
+        Atencion a = new Atencion();
+        Producto p = tblProductos.getProducto();
+        a.setNroAtencion(App.CURRENT_ATENCION);
+        a.setCajaId(App.CIA.getCentroCosto().getCaja().getId());
+        a.setCajero(App.CAJERO);
+        a.setCliente(new Cliente());
+        a.setProducto(p);
+        PnlPedido.getTable().addProducto(a);
     }
 
     @SuppressWarnings("unchecked")
@@ -65,14 +70,14 @@ public class PnlProducto extends javax.swing.JPanel {
         txtBuscar.setToolTipText("Buscar Producto");
         txtBuscar.setFocusAccelerator('b');
         txtBuscar.setMargin(new java.awt.Insets(5, 5, 5, 5));
-        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBuscarActionPerformed(evt);
-            }
-        });
         txtBuscar.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtBuscarFocusGained(evt);
+            }
+        });
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyReleased(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -80,6 +85,19 @@ public class PnlProducto extends javax.swing.JPanel {
         gridBagConstraints.weightx = 1.0;
         jPanel1.add(txtBuscar, gridBagConstraints);
 
+        tblProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblProductosMouseClicked(evt);
+            }
+        });
+        tblProductos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tblProductosKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tblProductosKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblProductos);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -93,32 +111,47 @@ public class PnlProducto extends javax.swing.JPanel {
         add(jPanel1, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
-        String nombre = txtBuscar.getText();
-        if (nombre.length() >= 3) {
-            dtmInit();
-            /*try {
-                for (Producto p : App.PRODUCTOS.getProductoContainName(nombre)) {
-                    rowProducto[0] = p.getId();
-                    rowProducto[1] = p.getNombre();
-                    rowProducto[2] = p.getPrecio();
-                    rowProducto[3] = p.getStock();
-                    rowProducto[4] = p.getUnidad();
-                    dtmP.addRow(rowProducto);
-                }
-                if (dtmP.getRowCount()>0) {
-                    tblProductos.getSelectionModel().setSelectionInterval(0, 0);
-                    tblProductos.grabFocus();
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(PnlProducto.class.getName()).log(Level.SEVERE, null, ex);
-            }*/
-        }
-    }//GEN-LAST:event_txtBuscarActionPerformed
-
     private void txtBuscarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarFocusGained
         txtBuscar.setText("");
     }//GEN-LAST:event_txtBuscarFocusGained
+
+    private void tblProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductosMouseClicked
+        if (evt.getClickCount() == 2) {
+            addProducto2Pedido();
+        }
+    }//GEN-LAST:event_tblProductosMouseClicked
+
+    private void tblProductosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblProductosKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            addProducto2Pedido();
+        }
+    }//GEN-LAST:event_tblProductosKeyReleased
+
+    private void tblProductosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblProductosKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
+            evt.consume();
+    }//GEN-LAST:event_tblProductosKeyPressed
+
+    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+            String nombre = txtBuscar.getText();
+            if (nombre.length() >= 3) {
+                try {
+                    List<Producto> productos = new ProductoController(Conn.getConnection()).getProductos(nombre);
+                    tblProductos.removeProductos();
+                    for (Producto p : productos) {
+                        tblProductos.addProducto(p);
+                    }
+                    if (dtmP.getRowCount()>0) {
+                        tblProductos.getSelectionModel().setSelectionInterval(0, 0);
+                        tblProductos.grabFocus();
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(PnlPedido.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_txtBuscarKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;

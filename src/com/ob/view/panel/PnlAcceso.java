@@ -17,7 +17,7 @@ public class PnlAcceso extends javax.swing.JPanel {
         initComponents();
         
         try {
-            List<Usuario> cajeros = new UsuarioController(Conn.getConnection()).getUsuarios(UsuarioController.ROL_CAJERO);
+            List<Usuario> cajeros = new UsuarioController(Conn.getConnection()).getAll(UsuarioController.ROL_CAJERO);
             LblCajero lblCajero;
             for (Usuario cajero : cajeros) {
                 lblCajero = new LblCajero(cajero);

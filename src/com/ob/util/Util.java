@@ -32,7 +32,15 @@ public class Util {
             System.out.println(message);
         }
     }
-
+    
+    public static final void i(int message) {
+        i(message+"");
+    }
+    
+    public static void i(Double message) {
+        i(message+"");
+    }
+    
     public static final void i(String message) {
         System.out.println(message);
     }
@@ -112,4 +120,12 @@ public class Util {
     public static void changeCard(String card){
         ((CardLayout)FrmContainer.getContainer().getLayout()).show(FrmContainer.getContainer(), card);
     }
+
+    public static String query(String query) {
+        if(App.DEBUG){
+            Util.i(query);
+        }
+        return query;
+    }
+
 }
