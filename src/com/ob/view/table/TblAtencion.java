@@ -2,6 +2,7 @@ package com.ob.view.table;
 
 import com.ob.controller.AtencionController;
 import com.ob.model.Atencion;
+import com.ob.util.App;
 import com.ob.util.Conn;
 import com.ob.util.Util;
 import com.ob.view.panel.PnlAtencion;
@@ -45,9 +46,9 @@ public class TblAtencion extends TblBase {
         super.setModel(dtm);
         super.setWidthColumn(0, 0); //id
         super.setWidthColumn(1, 0); //producto_id
-        super.setWidthColumn(3, 50); //Cantidad
+        super.setWidthColumn(3, 60); //Cantidad
         super.setWidthColumn(4, 60); //Precio
-        super.setWidthColumn(5, 70); //Total
+        super.setWidthColumn(5, 60); //Total
 
         DecimalFormatRenderer rightRenderer = new DecimalFormatRenderer();
         rightRenderer.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -68,6 +69,7 @@ public class TblAtencion extends TblBase {
     }*/
     public void setAtencion(List<Atencion> atenciones) {
         this.atenciones = atenciones;
+        dtm.setRowCount(0);
         for (Atencion a : this.atenciones) {
             addProducto(a, true);
         }
@@ -149,6 +151,7 @@ public class TblAtencion extends TblBase {
         dtm.setValueAt(a.getProducto().getTotal(), row, 5);
         try {
             new AtencionController(Conn.getConnection()).editAtencion(a);
+            updatecountItems();
         } catch (SQLException ex) {
             Logger.getLogger(TblAtencion.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -159,9 +162,10 @@ public class TblAtencion extends TblBase {
             int id = (int) dtm.getValueAt(i, 0);
             if (id == a.getId()) {
                 dtm.removeRow(i);
-                updatecountItems();
+                atenciones.remove(i);
                 try {
                     new AtencionController(Conn.getConnection()).eliminarAtencion(a);
+                    updatecountItems();
                 } catch (SQLException ex) {
                     Logger.getLogger(TblAtencion.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -170,7 +174,11 @@ public class TblAtencion extends TblBase {
     }
     
     private void updatecountItems() {
-        Util.i("TOTAL ITEMS: "+dtm.getRowCount());
         PnlAtencion.getLblCount().setText(dtm.getRowCount()+"");
+        Double total = 0.0;
+        for (Atencion atencion : atenciones) {
+            total += atencion.getProducto().getTotal();
+        }
+        PnlAtencion.getLblTotal().setText("S/. "+App.FORMAT_PRECIO.format(total));
     }
 }

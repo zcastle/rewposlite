@@ -10,13 +10,15 @@ import javax.swing.JLabel;
  * @author jc
  */
 public class BtnOption extends JLabel {
-    
+
     public static final int ACEPTAR = 0;
     public static final int CANCELAR = 1;
     public static final int EDITAR = 3;
     public static final int ELIMINAR = 4;
+    public static final int LIBRE = 5;
+    public static final int OCUPADO = 6;
     private int TYPE = 0;
-    
+
     public BtnOption() {
         super();
         init();
@@ -27,13 +29,14 @@ public class BtnOption extends JLabel {
         init();
     }
 
-    /*public BtnOption(Icon image) {
-        super(image);
-        init();
-    }*/
-    
     public BtnOption(int type) {
         super();
+        this.TYPE = type;
+        init();
+    }
+
+    public BtnOption(String text, int type) {
+        super(text);
         this.TYPE = type;
         init();
     }
@@ -51,28 +54,33 @@ public class BtnOption extends JLabel {
                 break;
             case BtnOption.CANCELAR:
             case BtnOption.ELIMINAR:
+            case BtnOption.OCUPADO:
                 setBackground(App.COLOR_HOLO_RED_LIGHT);
                 break;
             case BtnOption.EDITAR:
+            case BtnOption.LIBRE:
                 setBackground(App.COLOR_HOLO_GREEN_LIGHT);
                 break;
             default:
                 setBackground(App.COLOR_HOLO_BLUE_LIGHT);
                 break;
         }
-        
+
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addMouseListener(new MouseListener() {
 
             @Override
-            public void mouseClicked(MouseEvent e) {}
+            public void mouseClicked(MouseEvent e) {
+            }
 
             @Override
-            public void mousePressed(MouseEvent e) {}
+            public void mousePressed(MouseEvent e) {
+            }
 
             @Override
-            public void mouseReleased(MouseEvent e) {}
+            public void mouseReleased(MouseEvent e) {
+            }
 
             @Override
             public void mouseEntered(MouseEvent e) {

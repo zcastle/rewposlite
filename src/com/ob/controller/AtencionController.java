@@ -4,13 +4,16 @@ import com.ob.model.Atencion;
 import com.ob.model.Cliente;
 import com.ob.model.Producto;
 import com.ob.model.Usuario;
+import com.ob.util.Record;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AtencionController extends Controller {
 
@@ -75,4 +78,17 @@ public class AtencionController extends Controller {
         pstm.setInt(1, a.getId());
         pstm.execute();
     }
+    
+    public List<Record> getMonitor() throws SQLException {
+        List<Record> monitor = new ArrayList<>();
+        Atencion a;
+        Producto p;
+        Statement stm = this.conn.createStatement();
+        ResultSet rs = stm.executeQuery("SELECT DISTINCT IFNULL(A.nroatencion, 0) estado, AC.id FROM atenciones_c AC LEFT JOIN atenciones A ON AC.id=A.nroatencion ORDER BY AC.id LIMIT 20;");
+        while (rs.next()) {
+            monitor.add(new Record(rs.getObject("id"), rs.getObject("estado").equals("0")));
+        }
+        return monitor;
+    }
+    
 }

@@ -38,7 +38,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="a7" green="a7" red="b6" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Buscar (ctrl+B)"/>
+            <Property name="text" type="java.lang.String" value="Buscar (alt+B)"/>
             <Property name="toolTipText" type="java.lang.String" value="Buscar Producto"/>
             <Property name="focusAccelerator" type="char" value="b"/>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">

@@ -76,7 +76,7 @@ public class Producto {
         this.cantidad = cantidad;
     }
 
-    public Object getTotal() {
+    public Double getTotal() {
         return this.cantidad*this.precio;
     }
 }

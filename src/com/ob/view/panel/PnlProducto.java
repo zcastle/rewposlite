@@ -71,7 +71,7 @@ public class PnlProducto extends javax.swing.JPanel {
 
         txtBuscar.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         txtBuscar.setForeground(new java.awt.Color(182, 167, 167));
-        txtBuscar.setText("Buscar (ctrl+B)");
+        txtBuscar.setText("Buscar (alt+B)");
         txtBuscar.setToolTipText("Buscar Producto");
         txtBuscar.setFocusAccelerator('b');
         txtBuscar.setMargin(new java.awt.Insets(5, 5, 5, 5));

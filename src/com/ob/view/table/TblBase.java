@@ -1,5 +1,6 @@
 package com.ob.view.table;
 
+import com.ob.util.App;
 import java.awt.Component;
 import java.text.DecimalFormat;
 import javax.swing.JTable;
@@ -33,13 +34,13 @@ public abstract class TblBase extends JTable {
     }
 
     static class DecimalFormatRenderer extends DefaultTableCellRenderer {
-
-        private static final DecimalFormat formatoNumero = new DecimalFormat("#.00");
-
+        
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-
-            value = formatoNumero.format((Number) value);
+            
+            if(value instanceof Double){
+                value = App.FORMAT_PRECIO.format(value);
+            }
 
             return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
         }

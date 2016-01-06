@@ -5,6 +5,8 @@ import com.ob.model.Atencion;
 import com.ob.util.App;
 import com.ob.util.Conn;
 import com.ob.util.Util;
+import com.ob.view.FrmContainer;
+import com.ob.view.comp.BtnOption;
 import com.ob.view.table.TblAtencion;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
@@ -43,22 +45,23 @@ public class PnlAtencion extends javax.swing.JPanel {
     }
     
     private void editAtencion() {
-        //Atencion a = new Atencion();
         Atencion a = tblAtencion.getSelected();
         Util.i(a.getId());
         Util.i(a.getProducto().getNombre());
         pnlEditarAtencion.setAtencion(a);
         Util.changeCard(pnlBuscar, "Editar");
-        /*a.setNroAtencion(App.CURRENT_ATENCION);
-        a.setCajaId(App.CIA.getCentroCosto().getCaja().getId());
-        a.setCajero(App.CAJERO);
-        a.setCliente(new Cliente());
-        a.setProducto(p);*/
-        //PnlPedido.getTable().addProducto(a);
     }
     
     public static JLabel getLblCount() {
         return lblCount;
+    }
+    
+    public static BtnOption getLblMesa(){
+        return lblMesa;
+    }
+    
+    public static BtnOption getLblTotal(){
+        return lblTotal;
     }
     
     /**
@@ -76,7 +79,7 @@ public class PnlAtencion extends javax.swing.JPanel {
         JLabel1 = new javax.swing.JLabel();
         lblCount = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        lblOption7 = new com.ob.view.comp.BtnOption();
+        lblMesa = new com.ob.view.comp.BtnOption();
         lblTotal = new com.ob.view.comp.BtnOption();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblAtencion = new com.ob.view.table.TblAtencion();
@@ -92,10 +95,10 @@ public class PnlAtencion extends javax.swing.JPanel {
 
         pnlLeft.setLayout(new java.awt.BorderLayout());
 
-        jPanel3.setBackground(App.COLOR_HOLO_RED_LIGHT);
+        jPanel3.setBackground(App.COLOR_HOLO_ORANGE_DARK);
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
-        JLabel1.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        JLabel1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         JLabel1.setForeground(new java.awt.Color(255, 255, 255));
         JLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         JLabel1.setText("TOTAL ITEMS:");
@@ -105,7 +108,7 @@ public class PnlAtencion extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         jPanel3.add(JLabel1, gridBagConstraints);
 
-        lblCount.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        lblCount.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         lblCount.setForeground(new java.awt.Color(255, 255, 255));
         lblCount.setText("0");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -117,13 +120,18 @@ public class PnlAtencion extends javax.swing.JPanel {
         jPanel4.setBorder(null);
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
-        lblOption7.setBackground(App.COLOR_HOLO_ORANGE_LIGHT);
-        lblOption7.setText("P: 1");
-        lblOption7.setMinimumSize(new java.awt.Dimension(50, 60));
-        lblOption7.setPreferredSize(new java.awt.Dimension(50, 60));
+        lblMesa.setBackground(App.COLOR_HOLO_ORANGE_LIGHT);
+        lblMesa.setText("P: 1");
+        lblMesa.setMinimumSize(new java.awt.Dimension(50, 60));
+        lblMesa.setPreferredSize(new java.awt.Dimension(50, 60));
+        lblMesa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMesaMouseClicked(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanel4.add(lblOption7, gridBagConstraints);
+        jPanel4.add(lblMesa, gridBagConstraints);
 
         lblTotal.setBackground(App.COLOR_HOLO_RED_LIGHT);
         lblTotal.setText("S/. 0.00");
@@ -218,6 +226,10 @@ public class PnlAtencion extends javax.swing.JPanel {
         Util.changeCard(pnlBuscar, "Producto");
     }//GEN-LAST:event_btnBuscarProductoMouseClicked
 
+    private void lblMesaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMesaMouseClicked
+        FrmContainer.getMonitor().setVisible(!FrmContainer.getMonitor().isVisible());
+    }//GEN-LAST:event_lblMesaMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JLabel1;
@@ -227,10 +239,10 @@ public class PnlAtencion extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private static javax.swing.JLabel lblCount;
+    private static com.ob.view.comp.BtnOption lblMesa;
     private com.ob.view.comp.BtnOption lblOption6;
-    private com.ob.view.comp.BtnOption lblOption7;
     private com.ob.view.comp.BtnOption lblOption8;
-    private com.ob.view.comp.BtnOption lblTotal;
+    private static com.ob.view.comp.BtnOption lblTotal;
     private javax.swing.JPanel pnlBuscar;
     private javax.swing.JPanel pnlLeft;
     private javax.swing.JPanel pnlRight;

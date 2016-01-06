@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 public class PnlEditarAtencion extends javax.swing.JPanel {
 
     private Atencion atencion = null;
-    private JPanel pnlBuscar;
+    private JPanel pnlBuscar = null;
     
     public PnlEditarAtencion(JPanel pnlBuscar) {
         initComponents();
@@ -141,7 +141,6 @@ public class PnlEditarAtencion extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseClicked
-        //Util.i("EDITAR");
         int res = JOptionPane.showConfirmDialog(null, "Desea editar el producto?", "Confirmacion", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if(res==JOptionPane.YES_OPTION){
             PnlAtencion.getTable().editProducto(this.atencion, txtNombre.getText(), Double.parseDouble(txtCantidad.getText()), Double.parseDouble(txtPrecio.getText()));

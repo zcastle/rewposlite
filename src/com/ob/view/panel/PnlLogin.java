@@ -112,6 +112,7 @@ public class PnlLogin extends javax.swing.JPanel {
                 PnlAtencion.setAtencion(App.DEFAULT_ATENCION);
             }else{
                 Util.msg("Clave incorrecta");
+                txtClave.setText("");
             }
         } catch(SQLException e){
             Util.e(e.getMessage());

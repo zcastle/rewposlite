@@ -4,6 +4,7 @@ import com.ob.model.Cia;
 import com.ob.view.panel.PnlAcceso;
 import com.ob.view.panel.PnlLoginContainer;
 import com.ob.view.panel.PnlAtencion;
+import com.ob.view.panel.PnlMonitor;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JLabel;
@@ -47,6 +48,10 @@ public final class FrmContainer extends FrmBase {
         return lblCajero;
     }
     
+    public static PnlMonitor getMonitor(){
+        return pnlMonitor;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,6 +67,7 @@ public final class FrmContainer extends FrmBase {
         lblEmpresa = new javax.swing.JLabel();
         lblCajero = new javax.swing.JLabel();
         pnlContenedor = new javax.swing.JPanel();
+        pnlMonitor = new com.ob.view.panel.PnlMonitor();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -118,6 +124,12 @@ public final class FrmContainer extends FrmBase {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(pnlContenedor, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipady = 20;
+        getContentPane().add(pnlMonitor, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -128,5 +140,6 @@ public final class FrmContainer extends FrmBase {
     private javax.swing.JLabel lblOB;
     private javax.swing.JPanel pnlCabecera;
     private static javax.swing.JPanel pnlContenedor;
+    private static com.ob.view.panel.PnlMonitor pnlMonitor;
     // End of variables declaration//GEN-END:variables
 }

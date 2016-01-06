@@ -6,6 +6,9 @@ import com.ob.model.Cia;
 import com.ob.model.Usuario;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 public final class App {
 
@@ -20,8 +23,6 @@ public final class App {
     public static int DEFAULT_LIMIT = 20;
     public static int DEFAULT_ATENCION = 1;
     public static int CURRENT_ATENCION = 1;
-    
-    //public static CardLayout CARDLAYOUT = new java.awt.CardLayout();
     
     // CONSTANTES FINALES
     /*private static final int HOLO_BLUE_LIGHT = 0xff33b5e5;
@@ -51,7 +52,9 @@ public final class App {
     public static final String FORMAT_DATE = "dd/MM/yyyy";
     public static final String FORMAT_TIME = "hh:mm:ss";
     public static final String FORMAT_DATETIME = "dd/MM/yyyy HH:mm:ss";
-    public static final String FORMAT_PRECIO = "0.00";
+    //public static final String FORMAT_PRECIO = "0.00";
+    private static final DecimalFormatSymbols simbolo = DecimalFormatSymbols.getInstance(Locale.ENGLISH);
+    public static final DecimalFormat FORMAT_PRECIO = new DecimalFormat("0.00", App.simbolo);
     // FIN
 
     // CONSTANTES TEXTOS
