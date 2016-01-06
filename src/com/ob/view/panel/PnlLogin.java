@@ -94,7 +94,7 @@ public class PnlLogin extends javax.swing.JPanel {
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         App.CAJERO = null;
         txtClave.setText("");
-        Util.changeCard("Acceso");
+        Util.changeCard(FrmContainer.getContainer(), "Acceso");
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
@@ -108,8 +108,8 @@ public class PnlLogin extends javax.swing.JPanel {
             boolean isLogin = new UsuarioController(Conn.getConnection()).isLogin(App.CAJERO, clave);
             if(isLogin){
                 FrmContainer.getLblCajero().setText(App.CAJERO.getNombre());
-                Util.changeCard("Pedido");
-                PnlPedido.setAtencion(App.DEFAULT_ATENCION);
+                Util.changeCard(FrmContainer.getContainer(), "Pedido");
+                PnlAtencion.setAtencion(App.DEFAULT_ATENCION);
             }else{
                 Util.msg("Clave incorrecta");
             }

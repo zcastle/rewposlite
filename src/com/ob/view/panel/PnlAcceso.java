@@ -5,6 +5,7 @@ import com.ob.model.Usuario;
 import com.ob.util.App;
 import com.ob.util.Conn;
 import com.ob.util.Util;
+import com.ob.view.FrmContainer;
 import com.ob.view.comp.LblCajero;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -29,7 +30,7 @@ public class PnlAcceso extends javax.swing.JPanel {
                         Usuario usuario = label.getUsuario();
                         App.CAJERO = usuario;
                         PnlLogin.getLblCajeroFoto().setText(App.CAJERO.getNombre());
-                        Util.changeCard("Login");
+                        Util.changeCard(FrmContainer.getContainer(), "Login");
                     }
 
                     @Override

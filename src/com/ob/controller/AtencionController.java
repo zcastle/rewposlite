@@ -69,4 +69,10 @@ public class AtencionController extends Controller {
         pstm.setInt(4, a.getId());
         pstm.execute();
     }
+    
+    public void eliminarAtencion(Atencion a) throws SQLException {
+        PreparedStatement pstm = this.conn.prepareStatement("DELETE FROM atenciones WHERE id = ?");
+        pstm.setInt(1, a.getId());
+        pstm.execute();
+    }
 }

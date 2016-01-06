@@ -3,7 +3,7 @@ package com.ob.view;
 import com.ob.model.Cia;
 import com.ob.view.panel.PnlAcceso;
 import com.ob.view.panel.PnlLoginContainer;
-import com.ob.view.panel.PnlPedido;
+import com.ob.view.panel.PnlAtencion;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JLabel;
@@ -27,7 +27,7 @@ public final class FrmContainer extends FrmBase {
         //}
         pnlContenedor.add("Acceso", new PnlAcceso());
         pnlContenedor.add("Login", new PnlLoginContainer());
-        pnlContenedor.add("Pedido", new PnlPedido());
+        pnlContenedor.add("Pedido", new PnlAtencion());
         
         lblEmpresa.setText(cia.getRazonSocial());
         lblCajero.setText("");

@@ -1,7 +1,6 @@
 package com.ob.view.table;
 
 import com.ob.model.Producto;
-import com.ob.util.Util;
 import java.util.ArrayList;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
@@ -35,12 +34,12 @@ public class TblProducto extends TblBase {
                 return canEdit[columnIndex];
             }
         };
-        this.setModel(dtm);
+        super.setModel(dtm);
         DecimalFormatRenderer rightRenderer = new DecimalFormatRenderer();
         rightRenderer.setHorizontalAlignment(SwingConstants.RIGHT);
-        this.getColumnModel().getColumn(2).setCellRenderer(rightRenderer);
-        this.setWidthColumn(this, 0, 0); //Id
-        this.setWidthColumn(this, 2, 60); //Precio
+        super.getColumnModel().getColumn(2).setCellRenderer(rightRenderer);
+        super.setWidthColumn(0, 0); //Id
+        super.setWidthColumn(2, 60); //Precio
     }
 
     public void removeProductos() {
@@ -57,10 +56,10 @@ public class TblProducto extends TblBase {
         this.productos.add(p);
     }
 
-    public Producto getProducto() {
+    public Producto getSelected() {
         int row = getSelectedRow();
         int id = (int) dtm.getValueAt(row, 0);
-        for (Producto p : productos) {
+        for (Producto p : this.productos) {
             if (p.getId() == id) {
                 return p;
             }

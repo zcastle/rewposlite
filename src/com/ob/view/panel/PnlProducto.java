@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -34,19 +35,23 @@ public class PnlProducto extends javax.swing.JPanel {
                 tblProductos.addProducto(p);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(PnlPedido.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PnlAtencion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     private void addProducto2Pedido() {
         Atencion a = new Atencion();
-        Producto p = tblProductos.getProducto();
+        Producto p = tblProductos.getSelected();
         a.setNroAtencion(App.CURRENT_ATENCION);
         a.setCajaId(App.CIA.getCentroCosto().getCaja().getId());
         a.setCajero(App.CAJERO);
         a.setCliente(new Cliente());
         a.setProducto(p);
-        PnlPedido.getTable().addProducto(a);
+        PnlAtencion.getTable().addProducto(a);
+    }
+
+    public static JTextField getTxtBuscar() {
+        return txtBuscar;
     }
 
     @SuppressWarnings("unchecked")
@@ -112,7 +117,7 @@ public class PnlProducto extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtBuscarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarFocusGained
-        txtBuscar.setText("");
+        getTxtBuscar().setText("");
     }//GEN-LAST:event_txtBuscarFocusGained
 
     private void tblProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductosMouseClicked
@@ -128,13 +133,14 @@ public class PnlProducto extends javax.swing.JPanel {
     }//GEN-LAST:event_tblProductosKeyReleased
 
     private void tblProductosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblProductosKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             evt.consume();
+        }
     }//GEN-LAST:event_tblProductosKeyPressed
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
-            String nombre = txtBuscar.getText();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String nombre = getTxtBuscar().getText();
             if (nombre.length() >= 3) {
                 try {
                     List<Producto> productos = new ProductoController(Conn.getConnection()).getProductos(nombre);
@@ -142,12 +148,12 @@ public class PnlProducto extends javax.swing.JPanel {
                     for (Producto p : productos) {
                         tblProductos.addProducto(p);
                     }
-                    if (dtmP.getRowCount()>0) {
+                    if (dtmP.getRowCount() > 0) {
                         tblProductos.getSelectionModel().setSelectionInterval(0, 0);
                         tblProductos.grabFocus();
                     }
                 } catch (SQLException ex) {
-                    Logger.getLogger(PnlPedido.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(PnlAtencion.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
