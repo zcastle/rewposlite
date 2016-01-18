@@ -14,14 +14,21 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class PnlMonitor extends javax.swing.JPanel {
-
+    
+    private JPanel pnlBuscar;
+    
     public PnlMonitor() {
         initComponents();
         super.setVisible(false);
     }
-
+    
+    public void setPnlBuscar(JPanel pnlBuscar){
+        this.pnlBuscar = pnlBuscar;
+    }
+    
     private void load() {
         try {
             BtnOption btn;
@@ -42,6 +49,7 @@ public class PnlMonitor extends javax.swing.JPanel {
                         PnlAtencion.setAtencion(mesa);
                         App.CURRENT_ATENCION = mesa;
                         FrmContainer.getMonitor().setVisible(!FrmContainer.getMonitor().isVisible());
+                        Util.changeCard(pnlBuscar, "Producto");
                     }
 
                     @Override

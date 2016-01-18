@@ -27,38 +27,25 @@ public class Test extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        btnOption1 = new com.ob.view.comp.BtnOption();
+        btnOption2 = new com.ob.view.comp.BtnOption();
+        btnOption3 = new com.ob.view.comp.BtnOption();
+        btnOption4 = new com.ob.view.comp.BtnOption();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.GridLayout(2, 2));
 
-        jButton1.setBackground(new java.awt.Color(6, 201, 47));
-        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ob/images/ic_action_done.png"))); // NOI18N
-        jButton1.setText("ACEPTAR");
-        jButton1.setBorderPainted(false);
-        jButton1.setFocusPainted(false);
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setOpaque(true);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnOption1.setText("btnOption1");
+        getContentPane().add(btnOption1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addComponent(jButton1)
-                .addContainerGap(252, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jButton1)
-                .addContainerGap(142, Short.MAX_VALUE))
-        );
+        btnOption2.setText("btnOption2");
+        getContentPane().add(btnOption2);
+
+        btnOption3.setText("btnOption3");
+        getContentPane().add(btnOption3);
+
+        btnOption4.setText("btnOption4");
+        getContentPane().add(btnOption4);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -99,6 +86,9 @@ public class Test extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private com.ob.view.comp.BtnOption btnOption1;
+    private com.ob.view.comp.BtnOption btnOption2;
+    private com.ob.view.comp.BtnOption btnOption3;
+    private com.ob.view.comp.BtnOption btnOption4;
     // End of variables declaration//GEN-END:variables
 }

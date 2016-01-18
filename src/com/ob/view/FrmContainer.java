@@ -21,24 +21,17 @@ public final class FrmContainer extends FrmBase {
     public FrmContainer(Cia cia) {
         super();
         initComponents();
-        //setCards();
-        //for (String key : cards.keySet()) {
-            //System.out.println("Clave: " + key + " -> Valor: " + cards.get(key));
-            //pnlContenedor.add(key, cards.get(key));
-        //}
+
+        PnlAtencion pnlAtencion = new PnlAtencion();
+        JPanel pnlBuscar = pnlAtencion.getPnlBuscar();
+        pnlMonitor.setPnlBuscar(pnlBuscar);
         pnlContenedor.add("Acceso", new PnlAcceso());
         pnlContenedor.add("Login", new PnlLoginContainer());
-        pnlContenedor.add("Pedido", new PnlAtencion());
+        pnlContenedor.add("Pedido", pnlAtencion);
         
         lblEmpresa.setText(cia.getRazonSocial());
         lblCajero.setText("");
     }
-
-    /*public void setCards() {
-        cards.put("Acceso", new PnlAcceso());
-        cards.put("Login", new PnlLoginContainer());
-        cards.put("Pedido", new PnlPedido());
-    }*/
 
     public static JPanel getContainer() {
         return pnlContenedor;
@@ -128,7 +121,7 @@ public final class FrmContainer extends FrmBase {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipady = 20;
+        gridBagConstraints.ipady = 50;
         getContentPane().add(pnlMonitor, gridBagConstraints);
 
         pack();

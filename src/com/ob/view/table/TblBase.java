@@ -1,6 +1,7 @@
 package com.ob.view.table;
 
 import com.ob.util.App;
+import com.ob.util.Util;
 import java.awt.Component;
 import java.text.DecimalFormat;
 import javax.swing.JTable;
@@ -39,7 +40,7 @@ public abstract class TblBase extends JTable {
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             
             if(value instanceof Double){
-                value = App.FORMAT_PRECIO.format(value);
+                value = Util.formatNumber(value+"");
             }
 
             return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);

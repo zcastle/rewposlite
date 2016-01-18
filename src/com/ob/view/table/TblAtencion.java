@@ -70,6 +70,7 @@ public class TblAtencion extends TblBase {
     public void setAtencion(List<Atencion> atenciones) {
         this.atenciones = atenciones;
         dtm.setRowCount(0);
+        PnlAtencion.getLblTotal().setText("S/. 0.00");
         for (Atencion a : this.atenciones) {
             addProducto(a, true);
         }
@@ -179,6 +180,6 @@ public class TblAtencion extends TblBase {
         for (Atencion atencion : atenciones) {
             total += atencion.getProducto().getTotal();
         }
-        PnlAtencion.getLblTotal().setText("S/. "+App.FORMAT_PRECIO.format(total));
+        PnlAtencion.getLblTotal().setText("S/. "+Util.formatNumber(total));
     }
 }

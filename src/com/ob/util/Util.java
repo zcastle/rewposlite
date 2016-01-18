@@ -66,8 +66,7 @@ public class Util {
     }
 
     public static final String formatNumber(Double valor) {
-        DecimalFormat df = new DecimalFormat("###,##0.00");
-        return df.format(valor);
+        return App.FORMAT_PRECIO.format(valor);
     }
 
     public static final String formatNumber(String valor) {
@@ -132,5 +131,31 @@ public class Util {
         }
         return query;
     }
+    
+    public static final String left(String text, int v) {
+        return text.concat(Util.repite(" ", v)).substring(0, v);
+    }
+    
+    public static final String left(String text, int v, String c) {
+        return text.concat(Util.repite(c, v)).substring(0, v);
+    }
 
+    public static final String right(String text, int v) {
+        String cadena = Util.repite(" ", v).concat(text);
+        return cadena.substring(cadena.length() - v);
+    }
+    
+    public static final String right(String text, int v, String c) {
+        String cadena = Util.repite(c, v).concat(text);
+        return cadena.substring(cadena.length() - v);
+    }
+
+    public static final String repite(String str, int num) {
+        int len = num * str.length();
+        StringBuilder sb = new StringBuilder(len);
+        for (int i = 0; i < num; i++) {
+            sb.append(str);
+        }
+        return sb.toString();
+    }
 }

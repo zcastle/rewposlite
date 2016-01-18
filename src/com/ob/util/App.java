@@ -24,6 +24,10 @@ public final class App {
     public static int DEFAULT_ATENCION = 1;
     public static int CURRENT_ATENCION = 1;
     
+    public static int DEFAULT_DEPARTAMENTO = 1392;
+    public static int DEFAULT_PROVINCIA = 1393;
+    public static int DEFAULT_UBIGEO = 1394;
+    
     // CONSTANTES FINALES
     /*private static final int HOLO_BLUE_LIGHT = 0xff33b5e5;
     private static final int HOLO_BLUE_DARK = 0xff0099cc;
@@ -47,14 +51,14 @@ public final class App {
     public static final Color COLOR_HOLO_ORANGE_LIGHT = new Color(0xffffbb33);
     public static final Color COLOR_HOLO_ORANGE_DARK = new Color(0xffff8800);
 
-    public static final Dimension FRMMAIN_DIMENSION = new Dimension(1024, 700);
+    public static final Dimension FRMMAIN_DIMENSION = new Dimension(1024, 768);
 
     public static final String FORMAT_DATE = "dd/MM/yyyy";
     public static final String FORMAT_TIME = "hh:mm:ss";
     public static final String FORMAT_DATETIME = "dd/MM/yyyy HH:mm:ss";
     //public static final String FORMAT_PRECIO = "0.00";
-    private static final DecimalFormatSymbols simbolo = DecimalFormatSymbols.getInstance(Locale.ENGLISH);
-    public static final DecimalFormat FORMAT_PRECIO = new DecimalFormat("0.00", App.simbolo);
+    //private static final DecimalFormatSymbols simbolo = DecimalFormatSymbols.getInstance(Locale.ENGLISH);
+    public static final DecimalFormat FORMAT_PRECIO = new DecimalFormat("0.00", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
     // FIN
 
     // CONSTANTES TEXTOS

@@ -3,9 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/data/Workspace/NetBeansProjects/REWPosLite/src/com/ob/view/table/TblAtencion.java</file>
-            <file>file:/home/data/Workspace/NetBeansProjects/REWPosLite/src/com/ob/view/panel/PnlProducto.java</file>
-            <file>file:/home/data/Workspace/NetBeansProjects/REWPosLite/src/com/ob/view/panel/PnlAtencion.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/NetBeansProjects/rewposlite/src/com/ob/controller/UbigeoController.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/NetBeansProjects/rewposlite/src/com/ob/controller/ClienteController.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/NetBeansProjects/rewposlite/src/com/ob/view/panel/PnlAtencion.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/NetBeansProjects/rewposlite/src/com/ob/view/panel/PnlPagar.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/NetBeansProjects/rewposlite/src/com/ob/util/App.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/NetBeansProjects/rewposlite/src/com/ob/model/Departamento.java</file>
         </group>
     </open-files>
 </project-private>
